@@ -2,7 +2,6 @@ JoystickIno
 =====================
 A joystick for HTML5 apps, made with arduino, johnny-five and web sockets.
 
-----------
 
 ####Requirements
 - node.js
