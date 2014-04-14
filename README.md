@@ -5,7 +5,7 @@ A joystick for HTML5 apps, made with arduino, johnny-five and web sockets.
 
 ####Requirements
 - node.js
-- Arduino board with the Firmata library installed
+- Arduino board with Firmata library
 - breadboard
 - switches (5)
 - 10k ohm resistors (5)
