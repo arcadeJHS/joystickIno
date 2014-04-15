@@ -32,7 +32,7 @@
             }
 
             setTimeout(loop, 1000/60);
-        })();
+        }());
 
         ws.addEventListener('message', function(e) {
             var data = JSON.parse(e.data);
