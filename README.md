@@ -12,6 +12,7 @@ Run the web application server:
 ```
 node server.js
 ``` 
+The server runs by default at "ws://localhost:8000", but could also be hosted online. Just change the address in config.js file.
 
 Then connect the hardware, and run the joystick controller:
 ```
