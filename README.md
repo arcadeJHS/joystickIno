@@ -43,11 +43,11 @@ What it looks like
 ![picture][2]
 
 
-References
+References and Credits
 ----
-- [WebSocket-Node][3]
-- [johnny-five][4]
-- [arduino][5]
+- [A WebSocket Implementation for Node.JS][3]
+- [Firmata based Arduino Framework][4]
+- [Arduino board][5]
 
 [1]: https://github.com/arcadeJHS/joystickIno/blob/master/schema/joystickIno.png?raw=true
 [2]: https://github.com/arcadeJHS/joystickIno/blob/master/schema/img.jpg?raw=true
