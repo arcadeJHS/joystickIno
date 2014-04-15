@@ -3,6 +3,7 @@
 **********************************************/
 module.exports.periferals = {
 	
+	// joystick 1
 	joystick_1: function(j5, connection) {
 	    var up = new j5.Button({ pin: 10 });
 	    var bottom = new j5.Button({ pin: 9 });

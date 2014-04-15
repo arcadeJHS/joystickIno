@@ -85,45 +85,40 @@ wsServer.on('request', function(request) {
 });
 
 
+// sample rom
+var roms = require('./roms').roms;
+var game = roms.battleDuino();
+
+
 var services = {
     sendCurrentState: function() {
         var connection = this;
-        connection.send(JSON.stringify(data));
+        connection.send(JSON.stringify(game.data));
     },
     broadcastCurrentState: function(button) {
     	switch (button) {
     		case "UP":
-    			data.y = (data.y <= 0) ? 0 : data.y-speed;
+    			game.up();
     			break;
     		case "BOTTOM":
-    			data.y = (data.y+squareH >= canvasH) ? canvasH-squareH : data.y+speed;
+    			game.bottom();
     			break;
     		case "LEFT":
-    			data.x = (data.x <= 0) ? 0 : data.x-speed;
+    			game.left();
     			break;
     		case "RIGHT":
-    			data.x = (data.x+squareW >= canvasW) ? canvasW-squareW : data.x+speed;
+    			game.right();
     			break;
     		case "FIRE":
-    			data.fire = true;
+    			game.fire();
     			break;
     	}
 
         for (var connection in all_active_connections) {
-            all_active_connections[connection].send(JSON.stringify(data));
+            all_active_connections[connection].send(JSON.stringify(game.data));
         }
 
-        // reset
-        data.fire = false;
+        // reset 
+        game.data.fire = false;
     }
 };
-
-
-/**********************************************
-    data
-**********************************************/
-var data = {x: 180, y: 400, fire: false},
-    speed = 20,
-    squareW = squareH = 40,
-    canvasW = 400,
-    canvasH = 500;
