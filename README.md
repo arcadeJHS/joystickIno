@@ -1,7 +1,6 @@
 JoystickIno
 =====================
-A joystick for HTML5 apps, made with arduino, johnny-five and websockets.
-More to come...
+A **javascript joystick**, made with arduino, node.js and websockets.
 
 
 Usage
@@ -12,7 +11,7 @@ Run the web application server:
 ```
 node server.js
 ``` 
-The server runs by default at "ws://localhost:8000", but could also be hosted online. Just change the address in config.js file.
+The server runs by default at **ws://localhost:8000**, but could also be hosted online. Just change the address in **config.js** file.
 
 Then connect the hardware, and run the joystick controller:
 ```
