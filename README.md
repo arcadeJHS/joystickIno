@@ -2,21 +2,25 @@ JoystickIno
 =====================
 A **javascript joystick**, made with arduino, node.js and websockets.
 
+The basic idea is to have a websocket working as a middleware between the hardware and the browser. 
+
+Inputs triggered by the hardware are received by a websocket client implemented on the server (controller.js), which in turn propagates the update to the websocket server (server.js). Eventually the server broadcasts the message to all the listening browsers. 
+
 
 Usage
 ----
-You need to run two node programs.
+You need to run two independent node programs.
 
-Run the web application server:
+1. Run the web application server:
 ```
 node server.js
 ``` 
-The server runs by default at **ws://localhost:8000**, but could also be hosted online. Just change the address in **config.js** file.
+The server runs by default at **ws://localhost:8000**, but could also be hosted online. Just edit the **config.js** file, and change address and port.
 
-Then connect the hardware, and run the joystick controller:
+2. Then connect the hardware, and run the joystick controller:
 ```
 node controller.js
-``` 
+```
 
 
 Requirements

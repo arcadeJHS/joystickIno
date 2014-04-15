@@ -1,11 +1,12 @@
 /**********************************************
     http server
 **********************************************/
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1",
-    port = process.env.OPENSHIFT_NODEJS_PORT || 8000,
-    http = require('http'),
+var http = require('http'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    config = require('./config'),
+    ipaddress = process.env.OPENSHIFT_NODEJS_IP || config.address,
+    port = process.env.OPENSHIFT_NODEJS_PORT || config.port;
 
 
 var server = http.createServer(function(request, response) {
