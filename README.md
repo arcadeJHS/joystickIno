@@ -4,20 +4,43 @@ A joystick for HTML5 apps, made with arduino, johnny-five and websockets.
 More to come...
 
 
-####Requirements
-- node.js
+Usage
+----
+You need to run two node programs.
+
+Run the web application server:
+```
+node server.js
+``` 
+
+Then connect the hardware, and run the joystick controller:
+```
+node controller.js
+``` 
+
+
+Requirements
+----
 - Arduino board with Firmata library
+- node.js
+- johnny-five module
 - breadboard
 - switches (5)
 - 10k ohm resistors (5)
 
-####Schema
+
+Schema
+----
 ![schema][1]
 
-####What it looks like
+
+What it looks like
+----
 ![picture][2]
 
-####References
+
+References
+----
 - [WebSocket-Node][3]
 - [johnny-five][4]
 - [arduino][5]
