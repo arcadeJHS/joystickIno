@@ -27,7 +27,7 @@ Online demo
 ----
 You can test the joystick online by playing my HTML5 porting of Space Invaders at **http://matteopiazza.org/stuff/code/AdvertiseInvaders/**.
 
-To succesfully run it, you have to do:
+To succesfully run it, you have to:
 
 1. Assemble the hardware
 
