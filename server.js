@@ -85,9 +85,9 @@ wsServer.on('request', function(request) {
 });
 
 
-// sample rom
-var roms = require('./roms').roms;
-var game = roms.battleDuino();
+// default loaded rom
+var roms = require('./roms').roms,
+    game = roms[config.defaultRom]();
 
 
 var services = {
@@ -96,29 +96,12 @@ var services = {
         connection.send(JSON.stringify(game.data));
     },
     broadcastCurrentState: function(button) {
-    	switch (button) {
-    		case "UP":
-    			game.up();
-    			break;
-    		case "BOTTOM":
-    			game.bottom();
-    			break;
-    		case "LEFT":
-    			game.left();
-    			break;
-    		case "RIGHT":
-    			game.right();
-    			break;
-    		case "FIRE":
-    			game.fire();
-    			break;
-    	}
+    	button = JSON.parse(button);
+
+        game[button.command](button.type);
 
         for (var connection in all_active_connections) {
             all_active_connections[connection].send(JSON.stringify(game.data));
         }
-
-        // reset 
-        game.data.fire = false;
     }
 };

@@ -4,20 +4,21 @@ module.exports.roms = {
 	// Battle Duino rom
 	battleDuino: function() {
 		var bd = Object.create({
-			up: function() {
-				this.data.y = (this.data.y <= 0) ? 0 : this.data.y - this.speed;
+			up: function(type) {
+				(type == "down") && (this.data.y = (this.data.y <= 0) ? 0 : this.data.y - this.speed);
 			},
-			bottom: function() {
-				this.data.y = (this.data.y + this.squareH >= this.canvasH) ? this.canvasH - this.squareH : this.data.y + this.speed;
+			bottom: function(type) {
+				(type == "down") && (this.data.y = (this.data.y + this.squareH >= this.canvasH) ? this.canvasH - this.squareH : this.data.y + this.speed);
 			},
-			left: function() {
-				this.data.x = (this.data.x <= 0) ? 0 : this.data.x - this.speed;
+			left: function(type) {
+				(type == "down") && (this.data.x = (this.data.x <= 0) ? 0 : this.data.x - this.speed);
 			},
-			right: function() {
-				this.data.x = (this.data.x + this.squareW >= this.canvasW) ? this.canvasW - this.squareW : this.data.x + this.speed;
+			right: function(type) {
+				(type == "down") && (this.data.x = (this.data.x + this.squareW >= this.canvasW) ? this.canvasW - this.squareW : this.data.x + this.speed);
 			},
-			fire: function() {
-				this.data.fire = true;
+			fire: function(type) {
+				(type == "down") && (this.data.fire = true);
+				(type == "up") && (this.data.fire = false);
 			}
 		});
 
@@ -29,6 +30,32 @@ module.exports.roms = {
 		bd.canvasH = 500;
 
 		return bd;
+	},
+
+	// Space Invaders rom
+	// Check: https://github.com/arcadeJHS/AdvertiseInvaders
+	spaceInvaders: function() {
+		var si = Object.create({
+			up: function(type) {
+
+			},
+			bottom: function(type) {
+				
+			},
+			left: function(type) {
+				this.data = {code: 37, type: "key"+type};
+			},
+			right: function(type) {
+				this.data = {code: 39, type: "key"+type};
+			},
+			fire: function(type) {
+				this.data = {code: 32, type: "key"+type};
+			}
+		});
+
+		si.data = {code: 0, type: "keydown"};
+
+		return si;
 	}
 	
 

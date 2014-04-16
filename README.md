@@ -45,8 +45,8 @@ What it looks like
 
 References and Credits
 ----
-- [A WebSocket Implementation for Node.JS][3]
-- [Firmata based Arduino Framework][4]
+- [WebSocket-Node: a WebSocket Implementation for Node.JS][3]
+- [johnny-five: firmata based Arduino Framework][4]
 - [Arduino board][5]
 
 [1]: https://github.com/arcadeJHS/joystickIno/blob/master/schema/joystickIno.png?raw=true

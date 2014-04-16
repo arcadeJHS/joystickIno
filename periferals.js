@@ -12,24 +12,34 @@ module.exports.periferals = {
 	    var fire = new j5.Button({ pin: 12 });
 
 	    up.on("down", function() {            
-	        connection.sendUTF("UP");
-	        console.log("UP");
+	        connection.send(JSON.stringify({command: "up", type: "down"}));
+	    });
+	    up.on("up", function() {            
+	        connection.send(JSON.stringify({command: "up", type: "up"}));
 	    });
 	    bottom.on("down", function() {   
-	        connection.sendUTF("BOTTOM");
-	        console.log("BOTTOM");
+	        connection.send(JSON.stringify({command: "bottom", type: "down"}));
+	    });
+	    bottom.on("up", function() {   
+	        connection.send(JSON.stringify({command: "bottom", type: "up"}));
 	    });
 	    left.on("down", function() {
-	        connection.sendUTF("LEFT");
-	        console.log("LEFT");
+	        connection.send(JSON.stringify({command: "left", type: "down"}));
+	    });
+	    left.on("up", function() {
+	        connection.send(JSON.stringify({command: "left", type: "up"}));
 	    });
 	    right.on("down", function() {
-	        connection.sendUTF("RIGHT");
-	        console.log("RIGHT");
+	        connection.send(JSON.stringify({command: "right", type: "down"}));
+	    });
+	    right.on("up", function() {
+	        connection.send(JSON.stringify({command: "right", type: "up"}));
 	    });
 	    fire.on("down", function() {
-	        connection.sendUTF("FIRE");
-	        console.log("FIRE");
+	        connection.send(JSON.stringify({command: "fire", type: "down"}));
+	    });
+	    fire.on("up", function() {
+	        connection.send(JSON.stringify({command: "fire", type: "up"}));
 	    });
 
 	    console.log("Joystick_1 is ready");

@@ -2,8 +2,9 @@
     // websocket
     var ws = new WebSocket(config.wsAddress);
 
-    ws.onopen = function() {
-        // draw on canvas
+    ws.addEventListener('open', function() {
+        
+        // INIT
         var canvas = document.querySelector("#canvas"),
             ctx = canvas.getContext('2d'),
             x = 0, 
@@ -14,7 +15,7 @@
         canvas.width = 400;
         canvas.height = 500;
 
-        // renderer
+        // RENDER
         (function loop() {
             // clear canvas
             ctx.fillStyle = "#eee";
@@ -40,6 +41,7 @@
             document.querySelector("#x").textContent = data.x;
             document.querySelector("#y").textContent = data.y;
 
+            // UPDATE
             x = data.x;
             y = data.y;
             
@@ -48,5 +50,5 @@
                 bY = y;
             }
         });
-    };
+    });
 }());
