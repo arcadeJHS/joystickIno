@@ -28,17 +28,21 @@ Online demo
 You can test the joystick online by playing my HTML5 porting of Space Invaders at **http://matteopiazza.org/stuff/code/AdvertiseInvaders/**.
 
 To succesfully run it, you have to do:
+
 1. Assemble the hardware
+
 2. Edit **config.js** the following way:
 ```
 exports.address = "arduino-html5testserver.rhcloud.com";
 exports.port = "8000";
 exports.defaultRom = "spaceInvaders";
 ```
+
 3. Run:
 ```
 node controller.js
 ```
+
 4. Open in your browser **http://matteopiazza.org/stuff/code/AdvertiseInvaders/**
 
 
