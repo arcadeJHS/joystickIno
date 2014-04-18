@@ -25,7 +25,7 @@ node controller.js
 
 Configuration
 ----
-You can configurate few options in the **config.js** file:
+You can configure few options in the **config.js** file:
 ```
 // server address
 address = "127.0.0.1";
