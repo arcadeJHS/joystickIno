@@ -28,15 +28,19 @@ Configuration
 You can configure few options in the **config.js** file:
 ```
 // server address
-**address** = "127.0.0.1";
+address = "127.0.0.1";
+
 // server port	
-**port** = "8000";
+port = "8000";
+
 // websocket server address
-**wsAddress** = "ws://" + exports.address + ":" + exports.port;
+wsAddress = "ws://" + exports.address + ":" + exports.port;
+
 // loaded rom	
-**defaultRom** = "battleDuino";	// battleDuino | spaceInvaders
+defaultRom = "battleDuino";	// battleDuino | spaceInvaders
+
 // arduino pins
-**pins** = {
+pins = {
 	up: 10,
 	bottom: 9,
 	left: 11,
