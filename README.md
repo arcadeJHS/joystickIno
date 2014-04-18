@@ -13,13 +13,36 @@ You need to run two independent node programs.
 
 1. Run the web application server:
 ```
-node server.js
+node socket.js
 ``` 
 The server runs by default at **ws://localhost:8000**, but could also be hosted online. Just edit the **config.js** file, and change address and port.
 
 2. Then connect the hardware, and run the joystick controller:
 ```
 node controller.js
+```
+
+
+Configuration
+----
+You can configurate few options in the **config.js** file:
+```
+// server address
+address = "127.0.0.1";
+// server port	
+port = "8000";
+// websocket server address
+wsAddress = "ws://" + exports.address + ":" + exports.port;
+// loaded rom	
+defaultRom = "battleDuino";	// battleDuino | spaceInvaders
+// arduino pins
+pins = {
+	up: 10,
+	bottom: 9,
+	left: 11,
+	right: 8,
+	fire: 12
+};
 ```
 
 

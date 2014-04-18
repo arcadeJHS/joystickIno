@@ -1,25 +1,23 @@
 /**********************************************
-    websocket - client (node to node)
+    controller
 **********************************************/
-var j5 = require("johnny-five"),
-    board = new j5.Board(),
-    WebSocketClient = require('websocket').client,
-    config = require('./config');
+var config = require('./config'),
+	j5 = require("./J5").J5,
+    WebSocketClient = require('websocket').client;    
 
 
-board.on("ready", function() {
-
-	var wsClient = new WebSocketClient();
-
-	wsClient.on('connect', function(connection) {
-	    var periferals = require('./periferals').periferals;
-	    periferals.joystick_1(j5, connection);
+new j5.Board()
+	.on("ready", function() {
+		new WebSocketClient()
+			.on('connect', function(connection) {
+			    require('./periferals').periferals.init(connection);
+			})
+			.on('connectFailed', function(error) {
+			    console.log('wsClient connection error: ' + error.toString());
+			})
+			.connect(config.wsAddress);
+	})
+	.on("error", function(e) {
+		console.log("Board not ready - exit");
+		process.exit();
 	});
-
-	wsClient.on('connectFailed', function(error) {
-	    console.log('Connect Error: ' + error.toString());
-	});
-
-	wsClient.connect(config.wsAddress);
-
-});

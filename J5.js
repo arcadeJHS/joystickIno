@@ -1,0 +1,1 @@
+module.exports.J5 = require("johnny-five");

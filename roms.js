@@ -1,34 +1,36 @@
 module.exports.roms = {
 
-
 	// Battle Duino rom
 	battleDuino: function() {
 		var bd = Object.create({
-			up: function(type) {
-				(type == "down") && (this.data.y = (this.data.y <= 0) ? 0 : this.data.y - this.speed);
+			up: {
+				up: function() {},
+				down: function() { bd.data.y = (bd.data.y <= 0) ? 0 : bd.data.y - bd.speed; }
 			},
-			bottom: function(type) {
-				(type == "down") && (this.data.y = (this.data.y + this.squareH >= this.canvasH) ? this.canvasH - this.squareH : this.data.y + this.speed);
+			bottom: {
+				up: function() {},
+				down: function() { bd.data.y = (bd.data.y + bd.squareH >= bd.canvasH) ? bd.canvasH - bd.squareH : bd.data.y + bd.speed; }
 			},
-			left: function(type) {
-				(type == "down") && (this.data.x = (this.data.x <= 0) ? 0 : this.data.x - this.speed);
+			left: {
+				up: function() {},
+				down: function() { bd.data.x = (bd.data.x <= 0) ? 0 : bd.data.x - bd.speed; }
 			},
-			right: function(type) {
-				(type == "down") && (this.data.x = (this.data.x + this.squareW >= this.canvasW) ? this.canvasW - this.squareW : this.data.x + this.speed);
+			right: {
+				up: function() {},
+				down: function() { bd.data.x = (bd.data.x + bd.squareW >= bd.canvasW) ? bd.canvasW - bd.squareW : bd.data.x + bd.speed; }
 			},
-			fire: function(type) {
-				(type == "down") && (this.data.fire = true);
-				(type == "up") && (this.data.fire = false);
+			fire: {
+				up: function() { bd.data.fire = false; },
+				down: function() { bd.data.fire = true; }				
 			}
+		}, {
+			data: { value: {x: 180, y: 400, fire: false} },
+			speed: { value: 20 },
+			squareW: { value: 40 },
+			squareH: { value: 40 },
+			canvasW: { value: 400 },
+			canvasH: { value: 500 }
 		});
-
-		bd.data = {x: 180, y: 400, fire: false};
-		bd.speed = 20;
-		bd.squareW = 40;
-		bd.squareH = 40;
-		bd.canvasW = 400;
-		bd.canvasH = 500;
-
 		return bd;
 	},
 
@@ -36,27 +38,30 @@ module.exports.roms = {
 	// Check: https://github.com/arcadeJHS/AdvertiseInvaders
 	spaceInvaders: function() {
 		var si = Object.create({
-			up: function(type) {
-
+			up: {
+				up: function() {},
+				down: function() {},
 			},
-			bottom: function(type) {
-				
+			bottom: {
+				up: function() {},
+				down: function() {},
 			},
-			left: function(type) {
-				this.data = {code: 37, type: "key"+type};
+			left: {
+				up: function() { si.data.code = 37; si.data.type = "keyup"; },
+				down: function() { si.data.code = 37; si.data.type = "keydown"; }			
 			},
-			right: function(type) {
-				this.data = {code: 39, type: "key"+type};
+			right: {
+				up: function() { si.data.code = 39; si.data.type = "keyup"; },
+				down: function() { si.data.code = 39; si.data.type = "keydown"; }
 			},
-			fire: function(type) {
-				this.data = {code: 32, type: "key"+type};
+			fire: {
+				up: function() { si.data.code = 32; si.data.type = "keyup"; },
+				down: function() { si.data.code = 32; si.data.type = "keydown"; }
 			}
+		}, {
+			data: { value: {code: 0, type: "keydown"} }
 		});
-
-		si.data = {code: 0, type: "keydown"};
-
 		return si;
 	}
-	
 
 };
