@@ -33,9 +33,6 @@ address = "127.0.0.1";
 // server port	
 port = "8000";
 
-// websocket server address
-wsAddress = "ws://" + exports.address + ":" + exports.port;
-
 // loaded rom	
 defaultRom = "battleDuino";	// battleDuino | spaceInvaders
 
