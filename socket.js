@@ -2,14 +2,11 @@
     websocket - server
 **********************************************/
 var server = require('./server').server,
-    config = require('./config');
-
-
-// https://github.com/Worlize/WebSocket-Node
-var WebSocketServer = require('websocket').server;
-
-var global_counter = 0,
+    config = require('./config'),
+    WebSocketServer = require('websocket').server,
+    global_counter = 0,
     all_active_connections = {};
+    
 
 new WebSocketServer({httpServer: server})
     .on('request', function(request) {
