@@ -6,7 +6,6 @@
 	exports.address = "127.0.0.1";	
 	exports.port = "8000";
 	exports.wsAddress = "ws://" + exports.address + ":" + exports.port;	
-	exports.defaultRom = "battleDuino";	// battleDuino | spaceInvaders
 	exports.pins = {
 		up: 10,
 		bottom: 9,

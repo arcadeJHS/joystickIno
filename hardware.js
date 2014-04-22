@@ -20,6 +20,8 @@ var HW = HW || (function HW(j5) {
 				id: { value: id }
 			});
 
+			console.log("Joystick " + id + " ready!");
+
 			return j;
 		}
 

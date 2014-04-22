@@ -1,50 +1,40 @@
-/**********************************************
-    websocket - server
-**********************************************/
-var server = require('./server').server,
-    config = require('./config'),
-    WebSocketServer = require('websocket').server,
-    global_counter = 0,
-    all_active_connections = {};
-    
-
-new WebSocketServer({httpServer: server})
-    .on('request', function(request) {
-        var connection = request.accept(null, request.origin);
-
-        // connected clients
-        var id = global_counter++;
-        all_active_connections[id] = connection;
-        connection.id = id; 
-        
-        connection
-            .on('message', function(message) {
-                services.broadcastCurrentState(message.utf8Data);
-            })
-            .on('close', function(reasonCode, description) {
-                delete all_active_connections[connection.id];
-            });
-
-        // sync data on client connection
-        services.sendCurrentState.call(connection);
-    });
+var socket = socket || (function sockket() {
+    var http = require('http'),
+        config = require('./config'),
+        ipaddress = process.env.OPENSHIFT_NODEJS_IP || config.address,
+        port = process.env.OPENSHIFT_NODEJS_PORT || config.port,
+        WebSocketServer = require('websocket').server,
+        global_counter = 0,
+        all_active_connections = {};
 
 
-// default loaded rom
-var roms = require('./roms').roms,
-    game = roms[config.defaultRom]();
+    return {
+        init: function init() {
+            var server = http.createServer().listen(port, ipaddress);
 
+            new WebSocketServer({httpServer: server})
+                .on('request', function(request) {
+                    var connection = request.accept(null, request.origin);
 
-var services = {
-    sendCurrentState: function() {
-        var connection = this;
-        connection.send(JSON.stringify(game.data));
-    },
-    broadcastCurrentState: function(button) {
-    	button = JSON.parse(button);
-        game[button.command][button.type]();
-        for (var connection in all_active_connections) {
-            all_active_connections[connection].send(JSON.stringify(game.data));
+                    var id = global_counter++;
+                    all_active_connections[id] = connection;
+                    connection.id = id; 
+                    
+                    connection
+                        .on('message', function(message) {
+                            for (var connection in all_active_connections) {
+                                all_active_connections[connection].send(message.utf8Data);
+                            }
+                        })
+                        .on('close', function(reasonCode, description) {
+                            delete all_active_connections[connection.id];
+                        });
+                });
+
+            console.log("JoystickIno server is listening on: ws://" + ipaddress + ":" + port);
         }
-    }
-};
+    };
+}());
+
+
+module.exports.socket = socket;
