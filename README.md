@@ -37,7 +37,7 @@ button = {
 }
 ```
 ```
-// example of inputHandler function (check **/demo/rom.battleDuino.js**)
+// example of inputHandler function (check /demo/rom.battleDuino.js)
 function buttonHandler(button) {
     var command = button.command,
         type = button.type;
@@ -88,7 +88,7 @@ pins = {
 
 Online demo
 ----
-You can test the joystick online by playing my HTML5 porting of Space Invaders at **http://matteopiazza.org/stuff/code/AdvertiseInvaders/**.
+You can test the joystick online by playing my HTML5 porting of Space Invaders.
 
 To succesfully run it, you have to:
 
