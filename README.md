@@ -96,8 +96,8 @@ References and Credits
 - [johnny-five: firmata based Arduino Framework][4]
 - [Arduino board][5]
 
-[1]: https://github.com/arcadeJHS/joystickIno/blob/master/hardware schema/joystickIno.png?raw=true
-[2]: https://github.com/arcadeJHS/joystickIno/blob/master/hardware schema/img.jpg?raw=true
+[1]: https://github.com/arcadeJHS/joystickIno/blob/master/schema/joystickIno.png?raw=true
+[2]: https://github.com/arcadeJHS/joystickIno/blob/master/schema/img.jpg?raw=true
 [3]: https://github.com/Worlize/WebSocket-Node
 [4]: https://github.com/rwaldron/johnny-five
 [5]: http://arduino.cc/
