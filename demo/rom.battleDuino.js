@@ -66,8 +66,8 @@
     // init joystick
     // ==================================
     JYI.config({
-        inputHandler: buttonHandler,
-        wsAddress: "ws://localhost:8000"
+        wsAddress: "ws://localhost:8000",
+        inputHandler: buttonHandler        
     });
 
 

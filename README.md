@@ -4,23 +4,65 @@ A **javascript joystick**, made with arduino, node.js and websockets.
 
 The basic idea is to have a websocket working as a middleware between the hardware and the browser. 
 
-Inputs triggered by the hardware are received by a websocket client implemented on the server (controller.js), which in turn propagates the update to the websocket server (server.js). Eventually the server broadcasts the message to all the listening browsers. 
+Inputs triggered by the hardware are received by a websocket client implemented on the server (joystick-ino.js), which in turn propagates the update to the socket server (socket.js). Eventually the server broadcasts the message to all the listening clients. 
 
 
 Usage
 ----
-You need to run two independent node programs.
-
-1. Run the web application server:
+1. Connect the hardware, and run the joystick controller on a node.js server:
 ```
-node socket.js
+node joystick-ino.js
 ``` 
 The server runs by default at **ws://localhost:8000**, but could also be hosted online. Just edit the **config.js** file, and change address and port.
 
-2. Then connect the hardware, and run the joystick controller:
+Keys pressed on the hardware emit a **button object**, which will be used by the client connected to update game logic (see the following section).
+
+2. On the client side, you need to include in your page the script **joystick-ino-client.js** which you can find in the **demo** directory. Then configure and init the joystick by calling:
 ```
-node controller.js
+JYI.config({
+	wsAddress: "ws://localhost:8000",
+    inputHandler: buttonHandler    
+});
 ```
+where parameters are:
+
+- **wsAddress**: the address at which you are hosting your hardware (see the configuration section below).
+
+- **inputHandler**: a reference to a function defined in your code, which is responsible for updating your game logic. As a parameter, it takes a "button" object.
+```
+// example of button object
+button = {
+	command: "fire",
+	type: "down"
+}
+```
+```
+// example of inputHandler function (check **/demo/rom.battleDuino.js**)
+function buttonHandler(button) {
+    var command = button.command,
+        type = button.type;
+
+    switch (true) {
+        case command == "up" && type == "down":
+            y = (y <= 0) ? 0 : y - speed;
+            break;
+        case command == "bottom" && type == "down":
+            y = (y + squareW >= canvas.height) ? canvas.height - squareW : y + speed;
+            break;
+        case command == "left" && type == "down":
+            x = (x <= 0) ? 0 : x - speed;
+            break;
+        case command == "right" && type == "down":
+            x = (x + squareW >= canvas.width) ? canvas.width - squareW : x + speed;
+            break;
+        case command == "fire" && type == "down":
+            bX = x; bY = y;
+            break;
+    };
+}
+```
+
+See **/demo/rom.battleDuino.js** for an usage example.
 
 
 Configuration
@@ -32,9 +74,6 @@ address = "127.0.0.1";
 
 // server port	
 port = "8000";
-
-// loaded rom	
-defaultRom = "battleDuino";	// battleDuino | spaceInvaders
 
 // arduino pins
 pins = {
@@ -59,12 +98,11 @@ To succesfully run it, you have to:
 ```
 exports.address = "arduino-html5testserver.rhcloud.com";
 exports.port = "8000";
-exports.defaultRom = "spaceInvaders";
 ```  
 
 - Run:
 ```
-node controller.js
+node joystick-ino.js
 ```
 
 - Open in your browser **http://matteopiazza.org/stuff/code/AdvertiseInvaders/**
