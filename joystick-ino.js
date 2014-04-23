@@ -11,7 +11,8 @@ var config = require('./config'),
 new j5.Board()
 	.on("ready", function() {
 		// 1. init socket
-		socket.init();
+		if (config.address != config.demoAddress)
+			socket.init();
 
 		// 2. connect hardware to web server
 		new WebSocketClient()

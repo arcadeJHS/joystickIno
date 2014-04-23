@@ -86,19 +86,19 @@ pins = {
 ```
 
 
-Online demo
-----
-You can test the joystick online by playing my HTML5 porting of Space Invaders.
+[//]: # Online demo
+[//]: # ----
+[//]: # You can test the joystick online by playing my HTML5 porting of Space Invaders.
 
-To succesfully run it, you have to:
+[//]: # To succesfully run it, you have to:
 
-- Assemble the hardware.
+[//]: # - Assemble the hardware.
 
-- Edit **config.js** the following way:
-```
-exports.address = "arduino-html5testserver.rhcloud.com";
-exports.port = "8000";
-```  
+[//]: # - Edit **config.js** the following way:
+[//]: # ```
+[//]: # exports.address = "arduino-html5testserver.rhcloud.com";
+[//]: # exports.port = "8000";
+[//]: # ```  
 
 - Run:
 ```

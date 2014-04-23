@@ -1,7 +1,8 @@
 (function(exports) {
 
 	// online demo address
-	//exports.address = "arduino-html5testserver.rhcloud.com";	
+	exports.demoAddress = "arduino-html5testserver.rhcloud.com";
+	//exports.address = exports.demoAddress;	
 
 	exports.address = "127.0.0.1";	
 	exports.port = "8000";
