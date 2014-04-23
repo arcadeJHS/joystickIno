@@ -13,7 +13,7 @@ Usage
 ```
 node joystick-ino.js
 ``` 
-The server runs by default at **ws://localhost:8000**, but could also be hosted online. Just edit the **config.js** file, and change address and port.
+The server runs by default at **ws://localhost:8000**. Just edit the **config.js** file, and change address and port.
 
 Keys pressed on the hardware emit a **button object**, which will be used by the client connected to update game logic (see the following section).
 

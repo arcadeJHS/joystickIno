@@ -22,8 +22,8 @@ var socket = socket || (function sockket() {
                     
                     connection
                         .on('message', function(message) {
-                            for (var connection in all_active_connections) {
-                                all_active_connections[connection].send(message.utf8Data);
+                            for (var con in all_active_connections) {
+                                all_active_connections[con].send(message.utf8Data);
                             }
                         })
                         .on('close', function(reasonCode, description) {
