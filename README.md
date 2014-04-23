@@ -99,7 +99,6 @@ To succesfully run it, you have to:
 exports.address = "arduino-html5testserver.rhcloud.com";
 exports.port = "8000";
 ```  
--->
 
 - Run:
 ```
@@ -107,6 +106,7 @@ node joystick-ino.js
 ```
 
 - Open in your browser **http://matteopiazza.org/stuff/code/AdvertiseInvaders/**
+-->
 
 
 Requirements
