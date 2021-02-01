@@ -6,6 +6,8 @@ The basic idea is to have a websocket working as a middleware between the hardwa
 
 Inputs triggered by the hardware are received by a websocket client implemented on the server (joystick-ino.js), which in turn propagates the update to the socket server (socket.js). Eventually the server broadcasts the message to all the listening clients. 
 
+> *Note:* find a more recent version of this project, using a Raspberry PI, in the [joy-pi](https://github.com/arcadeJHS/joy-pi) repo.
+
 
 Usage
 ----
